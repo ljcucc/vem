@@ -12,3 +12,10 @@ usage: `vem [commands] [options]`
 
 1. cd to your project workspace folder
 2. launch a VM by using command: `vem init`
+
+## Progress (TODO)
+
+- [ ] `vem init`: start up automation tool
+  - [x] generate `mpconfig.json`
+  - [ ] auto create instance by using `mpconfig.json`
+- [ ]  `vem pkg`: package and solution management tool
