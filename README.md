@@ -4,6 +4,19 @@
 
 this is a very simple tool collection to help you get around your development environments with npm-like, pipenv-style operation.
 
+## Installation
+
+```bash
+# 1. pull repo to local machine
+git clone https://github.com/ljcucc/vem.git ~/.vem
+
+# 2. add bin to path
+echo 'export PATH="$PATH:$HOME/.vem/bin"' >> ~/.zshrc
+
+# 3. refresh zshrc
+source ~/.zshrc
+```
+
 ## Get Started
 
 usage: `vem [commands] [options]`
