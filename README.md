@@ -19,5 +19,5 @@ usage: `vem [commands] [options]`
   - [x] generate `mpconfig.json`
   - [ ] auto create instance by using `mpconfig.json`
 - [ ]  `vem pkg`: package and solution management tool
-  - [ ] `vem pkg install`: AKA apt-get install but recorded on mpconfig.json
-  - [ ] `vem pkg uninstall`: AKA apt-get uninstall but recorded on mpconfig.json
+  - [ ] `vem pkg install`: AKA apt-get install but record installed on mpconfig.json
+  - [ ] `vem pkg uninstall`: AKA apt-get uninstall but remove uninstalled from mpconfig.json
