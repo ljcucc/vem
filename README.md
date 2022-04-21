@@ -1,4 +1,4 @@
-# Multipass Utils
+# VEM - A Multipass Utils (currently)
 
 > ⚠️ WARNING: unfinished project
 
