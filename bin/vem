@@ -9,11 +9,12 @@ from mpu.command import CmdInfo, Command, CommandManager
 
 from mpu.cmds.init import InitCommand
 from mpu.cmds.pkg import PkgCommand
+from mpu.cmds.info import InfoCommand
 
 def disp_help():
   description = ("""
 usage:
-  mputils [options] <command>
+  vem <command> [...options]
 
 Available commands:
 """)
@@ -27,6 +28,7 @@ Available commands:
 command_list = CommandManager([
   Command(CmdInfo("help", "display help")),
   InitCommand(),
+  InfoCommand(),
   Command(CmdInfo("rm", "remove VM instancec for current folder")),
   PkgCommand(),
   Command(CmdInfo("config", "udpate or read config to or from VM instance"))
@@ -45,7 +47,7 @@ def main():
 
   if(command_list.indexOf(func_name) == -1):
     print(f"command \"{func_name}\" not found")
-    disp_help()
+    print(disp_help())
     exit(1)
   
   command_list.exec(func_name)
