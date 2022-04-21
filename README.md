@@ -11,7 +11,7 @@ this is a very simple tool collection to help you get around your development en
 git clone https://github.com/ljcucc/vem.git ~/.vem
 
 # 2. add bin to path
-echo 'export PATH="$PATH:$HOME/.vem/bin"' >> ~/.zshrc
+echo 'export PATH="$PATH:$HOME/.vem/"' >> ~/.zshrc
 
 # 3. refresh zshrc
 source ~/.zshrc
