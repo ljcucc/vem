@@ -2,6 +2,8 @@ import os
 from os import path
 import json
 
+from mpu.controllers.args_controller import ArgsController
+
 from ..command import Command, CmdInfo
 from ..mp_controller import MPController
 from ..controllers.config_controller import ConfigController, ConfigData
@@ -17,7 +19,7 @@ class InitCommand(Command):
     self.config = {}
     self.mpc = MPController()
 
-  def run(self):
+  def run(self, args:ArgsController):
     self.read_config()
     self.launch()
   

@@ -1,11 +1,13 @@
 from dataclasses import dataclass
 
+from mpu.controllers.args_controller import ArgsController
+
 class Command:
   """Empty command tmeplate class"""
   def __init__(self, info) -> None:
     self.info = info
   
-  def run(self):
+  def run(self, args:ArgsController):
     """undefined run function, which will run custom command code after overrided."""
     print("not defined")
 
@@ -32,9 +34,9 @@ class CommandManager:
   
     return -1
   
-  def exec(self, name):
+  def exec(self, name, args:ArgsController):
     """execute command by using name"""
     if(self.indexOf(name) == -1):
       raise Exception("Command name not found")
 
-    self.cmds[self.indexOf(name)].run()
+    self.cmds[self.indexOf(name)].run(args)
