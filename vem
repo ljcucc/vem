@@ -45,17 +45,9 @@ def main():
     print(disp_help())
     exit(0)
 
-  # TODO: Move this code into CommandManager
-  func_name = ac.command_head()
-
-  if(command_list.indexOf(func_name) == -1):
-    print(f"command \"{func_name}\" not found")
+  if(not command_list.run(ac)):
     print(disp_help())
     exit(1)
-  
-  command_list.exec(func_name, args = ac.down_level())
-
-  # todo end -----------------
 
 if __name__ == "__main__":
   main()

@@ -40,3 +40,10 @@ class CommandManager:
       raise Exception("Command name not found")
 
     self.cmds[self.indexOf(name)].run(args)
+  
+  def run(self, args:ArgsController):
+    func_name = args.command_head()
+    if(self.indexOf(func_name) == -1):
+      print(f"command \"{func_name}\" not found")
+      return False
+    self.exec(func_name, args = args.down_level())
