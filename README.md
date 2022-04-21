@@ -39,3 +39,4 @@ usage: `vem [commands] [options]`
   - [ ] `vem config set`: set VM config
   - [ ] `vem config get`: get VM config
 - [x] `vem rm`: remove current folder instance totally (delete + purge)
+- [ ] `vem exec [command]`: execute command and recored it to config
