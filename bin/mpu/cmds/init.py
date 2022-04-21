@@ -4,12 +4,14 @@ import json
 
 from ..command import Command, CmdInfo
 from ..mp_controller import MPController
+from ..controllers.config_controller import ConfigController
 
 import random
 import string
 rand_char = lambda y: ''.join(random.choice(string.ascii_letters) for x in range(y))
 
 class InitCommand(Command):
+  """Command 'init' class"""
   def __init__(self):
     super().__init__(CmdInfo("init", "create a VM instance for current folder"))
     self.config = {}
@@ -58,22 +60,16 @@ class InitCommand(Command):
     return config
   
   def read_config(self):
-    current_folder = os.getcwd()
-    print(f"\n[1/1] init VM instance in {current_folder} ...")
+    cc = ConfigController()
 
-    config_path = path.join(current_folder, "mpconfig.json")
+    print(f"\n[1/1] init VM instance in {cc.ccurrent_folder} ...")
 
-    if(not path.exists(config_path)):
+    if(not cc.exists()):
       print("config file not exists...")
       self.config = self.prompt_config()
-
-      with open(config_path, '+w') as jsonf:
-        json.dump(self.config ,jsonf, indent=4)
+      cc.write(self.config)
     else:
       print("config file exists, read from config file...")
-
-      # read json file to config
-      with open(config_path) as jsonf:
-        self.config = json.load(jsonf)
+      self.config = cc.read()
     
     # self.read_options()
