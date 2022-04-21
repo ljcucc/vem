@@ -2,6 +2,14 @@ import os
 from os import path
 import json
 from xmlrpc.client import Boolean
+from dataclasses import dataclass
+
+@dataclass
+class ConfigData:
+  """Config data dataclass"""
+
+  name: str
+  disk: str = "10G"
 
 class ConfigController:
   """Controller for config file"""
@@ -22,3 +30,10 @@ class ConfigController:
     """read out all config from file"""
     with open(self.config_path) as jsonf:
       return json.load(jsonf)
+  
+  def convData(self, config):
+    """return a dataclass from config object"""
+    return ConfigData(
+      name=config["name"],
+      disk=config["disk"]
+    )

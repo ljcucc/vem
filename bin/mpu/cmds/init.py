@@ -19,6 +19,7 @@ class InitCommand(Command):
 
   def run(self):
     self.read_config()
+    self.launch()
   
   def read_options(self):
     # import argparse
@@ -43,14 +44,15 @@ class InitCommand(Command):
     config['name'] = input(f"* environment name: ({config['name']}) ") or config['name']
     while True:
       rid = rand_char(6)
-      if(not rid+config['name'] in self.mpc.list_vm()):
+      name = rid+config['name']
+      if(not self.mpc.exists(name)):
         config['name'] = rand_char(6)+"-"+config['name']
         break
 
     config['disk'] = input(f"* disk size: ({config['disk']}) ") or config['disk']
 
     print()
-    print(config)
+    print(json.dumps(config, indent=4))
 
     confirm = input("\nIs this OK? (yes) ")
     if not (len(confirm) > 0 and (confirm[0].lower() == 'y' or confirm[0] == '\n')):
@@ -62,7 +64,7 @@ class InitCommand(Command):
   def read_config(self):
     cc = ConfigController()
 
-    print(f"\n[1/1] init VM instance in {cc.ccurrent_folder} ...")
+    print(f"\n[1/1] init VM instance in {cc.current_folder} ...")
 
     if(not cc.exists()):
       print("config file not exists...")
@@ -72,4 +74,6 @@ class InitCommand(Command):
       print("config file exists, read from config file...")
       self.config = cc.read()
     
-    # self.read_options()
+  def launch(self):
+    cc = ConfigController()
+    self.mpc.launch_vm(cc.convData(self.config))

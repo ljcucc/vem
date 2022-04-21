@@ -10,6 +10,7 @@ from mpu.command import CmdInfo, Command, CommandManager
 from mpu.cmds.init import InitCommand
 from mpu.cmds.pkg import PkgCommand
 from mpu.cmds.info import InfoCommand
+from mpu.cmds.rm import RemoveCommand
 
 def disp_help():
   description = ("""
@@ -29,7 +30,7 @@ command_list = CommandManager([
   Command(CmdInfo("help", "display help")),
   InitCommand(),
   InfoCommand(),
-  Command(CmdInfo("rm", "remove VM instancec for current folder")),
+  RemoveCommand(),
   PkgCommand(),
   Command(CmdInfo("config", "udpate or read config to or from VM instance"))
 ])
