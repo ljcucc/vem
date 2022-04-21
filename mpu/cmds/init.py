@@ -4,7 +4,7 @@ import json
 
 from ..command import Command, CmdInfo
 from ..mp_controller import MPController
-from ..controllers.config_controller import ConfigController
+from ..controllers.config_controller import ConfigController, ConfigData
 
 import random
 import string
@@ -35,24 +35,22 @@ class InitCommand(Command):
   
   def prompt_config(self):
     current_folder = os.getcwd()
-    config = {
-      "version": 1,
-      "name": os.path.basename(current_folder).lower().replace("_","-"),
-      "disk": "10G",
-      "dir": current_folder
-    }
-    config['name'] = input(f"* environment name: ({config['name']}) ") or config['name']
+    config = ConfigData(
+      name = os.path.basename(current_folder).lower().replace("_","-"), 
+      dir = current_folder
+    )
+    config.name = input(f"* environment name: ({config.name}) ") or config.name
     while True:
       rid = rand_char(6)
-      name = rid+config['name']
+      name = rid+config.name
       if(not self.mpc.exists(name)):
-        config['name'] = rand_char(6)+"-"+config['name']
+        config.name = rand_char(6)+"-"+config.name
         break
 
-    config['disk'] = input(f"* disk size: ({config['disk']}) ") or config['disk']
+    config.disk = input(f"* disk size: ({config.disk}) ") or config.disk
 
     print()
-    print(json.dumps(config, indent=4))
+    print(json.dumps(config.toDict(), indent=4))
 
     confirm = input("\nIs this OK? (yes) ")
     if not (len(confirm) > 0 and (confirm[0].lower() == 'y' or confirm[0] == '\n')):
@@ -69,10 +67,11 @@ class InitCommand(Command):
     if(not cc.exists()):
       print("config file not exists...")
       self.config = self.prompt_config()
-      cc.write(self.config)
+      cc.setConfig(self.config)
     else:
       print("config file exists, read from config file...")
-      self.config = cc.read()
+      self.config = cc.getConfig()
+      print(self.config)
     
   def launch(self):
     cc = ConfigController()
