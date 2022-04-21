@@ -30,7 +30,7 @@ usage: `vem [commands] [options]`
 
 - [ ] `vem init`: start up automation tool
   - [x] generate `mpconfig.json`
-  - [ ] auto create instance by using `mpconfig.json`
+  - [x] auto create instance by using `mpconfig.json`
 - [ ]  `vem pkg`: package and solution management tool
   - [ ] `vem pkg install`: AKA apt-get install but record installed on mpconfig.json
   - [ ] `vem pkg uninstall`: AKA apt-get uninstall but remove uninstalled from mpconfig.json
@@ -38,3 +38,4 @@ usage: `vem [commands] [options]`
   - [ ] `vem config update`: update `mpconfig.json` settings
   - [ ] `vem config set`: set VM config
   - [ ] `vem config get`: get VM config
+- [x] `vem rm`: remove current folder instance totally (delete + purge)
