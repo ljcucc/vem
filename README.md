@@ -54,13 +54,13 @@ usage: `vem [commands] [options]`
 ## Configuration design
 
 `mpconfig.json` is the config file of `vem`, here's a template of a regular config file looks like:
-```json
+```js
 {
   "version": 1,                      // current version
   "name": "aabbCC-helloworld",       // instance name
   "disk": "10G",                     // instance disk size
   "dir": "/Users/ITWolf/Workspace/", // dir path to workspace
-  "packages": [ // packages to install at the first time
+  "packages": [                      // packages to install at the first time
     "nodejs",
     "build-essential"
   ]
