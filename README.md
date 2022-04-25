@@ -49,3 +49,21 @@ usage: `vem [commands] [options]`
 - [x] `vem rm`: remove current folder instance totally (delete + purge)
 - [ ] `vem exec [command]`: execute command and recored it to config
 - [ ] `vem shell [command]`: enter instance shell to execute command (not recommended to do that)
+- [ ] `vem build`: build a docker image for current developement
+
+## Configuration design
+
+`mpconfig.json` is the config file of `vem`, here's a template of a regular config file looks like:
+```json
+{
+  "version": 1,                      // current version
+  "name": "aabbCC-helloworld",       // instance name
+  "disk": "10G",                     // instance disk size
+  "dir": "/Users/ITWolf/Workspace/", // dir path to workspace
+  "packages": [ // packages to install at the first time
+    "nodejs",
+    "build-essential"
+  ]
+
+}
+```
