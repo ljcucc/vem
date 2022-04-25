@@ -58,6 +58,9 @@ class InitCommand(Command):
     # Prompt disk name
     config.disk = input(f"* disk size: ({config.disk}) ") or config.disk
 
+    # Prompt package manager
+    config.pm_cli = input(f"* package manager: ({config.pm_cli}) ") or config.pm_cli
+
     # Display final config
     print()
     print(json.dumps(config.toDict(), indent=4))

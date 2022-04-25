@@ -20,6 +20,7 @@ class ConfigData:
   disk: str = "10G"
   recorded:bool = True # enable this will record every command you type from "exec"
   dir:str = ""
+  pm_cli = "apt-get"
     
   @staticmethod
   def fromDict(d):
