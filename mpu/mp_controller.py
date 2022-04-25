@@ -56,7 +56,6 @@ class MPController:
 
   def exists(self, name):
     """check a instance is exists or not by using name of it"""
-    self.cmd_run_disp
     return name in self.list_vm()
 
   def launch_vm(self, config:ConfigData):
