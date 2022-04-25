@@ -5,13 +5,7 @@ from os import path
 # import argparse
 # from argparse import RawTextHelpFormatter
 
-from mpu.command import CmdInfo, Command, CommandManager
-
-from mpu.cmds import *
-from mpu.controllers import *
-
-from mpu.controllers.engine.mp_controller import InstanceInfo, MPController
-from mpu.controllers.engine.docker_controller import *
+from mpu import *
 
 # TODO: read config file and return different InstanceController for different platform
 def getInstanceController() -> InstanceInfo:
