@@ -12,22 +12,9 @@ from mpu.cmds.pkg import PkgCommand
 from mpu.cmds.info import InfoCommand
 from mpu.cmds.rm import RemoveCommand
 from mpu.cmds.exec import ExecCommand
+from mpu.cmds.doctor.doctor import DoctorCommand
 
 from mpu.controllers.args_controller import ArgsController
-
-def disp_help():
-  description = ("""
-usage:
-  vem <command> [...options]
-
-Available commands:
-""")
-
-  for cmd in command_list.cmds:
-    description += "  " + (cmd.info.title_help()) + "\n"
-  
-  return description
-
 
 command_list = CommandManager([
   Command(CmdInfo("help", "display help")),
@@ -36,7 +23,8 @@ command_list = CommandManager([
   RemoveCommand(),
   PkgCommand(),
   Command(CmdInfo("config", "udpate or read config to or from VM instance")),
-  ExecCommand()
+  ExecCommand(),
+  DoctorCommand()
 ])
 
 def main():
@@ -49,7 +37,7 @@ def main():
     exit(0)
 
   if(not command_list.run(ac)):
-    print(disp_help())
+    print(command_list.disp_help())
     exit(1)
 
 if __name__ == "__main__":
