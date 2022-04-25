@@ -31,7 +31,7 @@ usage: `vem [commands] [options]`
 - [ ] `vem init`: start up automation tool
   - [x] generate `mpconfig.json`
   - [x] auto create instance by using `mpconfig.json`
-  - [x] auto install packages when init from a exist `mpconfig.json`
+  - [ ] auto install packages when init from a exist `mpconfig.json`
 - [ ]  `vem pkg`: package and solution management tool for dependencies
   - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to `mpconfig.json`
     - [x] supprt `apt-get install`
