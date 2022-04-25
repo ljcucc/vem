@@ -27,6 +27,22 @@ class CommandManager:
   """managing multiple commands"""
   cmds:list
 
+  def disp_help(self, usage="vem <command> [...options]"):
+    description = ("""
+usage: 
+"""
++"  "+usage
++
+"""
+
+Available commands:
+""")
+
+    for cmd in self.cmds:
+      description += "  " + (cmd.info.title_help()) + "\n"
+  
+    return description
+
   def indexOf(self, name):
     """get the index of command in command sequence"""
     for index, item in enumerate(self.cmds):
