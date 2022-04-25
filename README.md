@@ -28,7 +28,7 @@ usage: `vem [commands] [options]`
 
 ## Roadmap (TODO)
 
-- [ ] `vem init`: start up automation tool
+- [x] `vem init`: start up automation tool
   - [x] generate `mpconfig.json`
   - [x] auto create instance by using `mpconfig.json`
 - [ ]  `vem pkg`: package and solution management tool for dependencies
