@@ -28,17 +28,19 @@ usage: `vem [commands] [options]`
 
 ## Roadmap (TODO)
 
-- [ ] `vem init`: start up automation tool
+- [x] `vem init`: start up automation tool
   - [x] generate `mpconfig.json`
   - [x] auto create instance by using `mpconfig.json`
-  - [ ] auto install packages when init from a exist `mpconfig.json`
+  - [x] auto install packages when init from a exist `mpconfig.json`
 - [ ]  `vem pkg`: package and solution management tool for dependencies
   - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to `mpconfig.json`
     - [x] supprt `apt-get install`
-    - [ ] support different PM and optional sudo
+    - [x] support other PM and optional sudo
+    - [ ] implements for other PM
   - [ ] `vem pkg uninstall`: AKA apt-get uninstall package from instance and remove dependency to `mpconfig.json`
     - [x] supprt `apt-get uninstall`
-    - [ ] support different PM and optional sudo
+    - [x] support other PM and optional sudo
+    - [ ] implements for other PM
   - [ ] `vem pkg list`: list all dependencies package
 - [ ] `vem config`: update, get, set config to a VM instance, everytime config updated, VM will be recreate.
   - [ ] `vem config update`: update `mpconfig.json` settings
