@@ -14,23 +14,50 @@ from mpu.cmds.rm import RemoveCommand
 from mpu.cmds.exec import ExecCommand, RunCommand
 from mpu.cmds.doctor.doctor import DoctorCommand
 from mpu.cmds.help import HelpCommand
+from mpu.cmds.config import *
+from mpu.cmds.stop import *
+from mpu.cmds.start import *
 
 from mpu.controllers.args_controller import ArgsController
+from mpu.controllers.config_controller import ConfigController
 from mpu.controllers.instance_controller import InstanceController
-from mpu.controllers.engine.mp_controller import MPController
+
+from mpu.controllers.engine.mp_controller import InstanceInfo, MPController
+from mpu.controllers.engine.docker_controller import *
 
 # TODO: read config file and return different InstanceController for different platform
-def getInstanceController():
-  return MPController()
+def getInstanceController() -> InstanceInfo:
+  """get instance controller by config"""
+
+  cc = ConfigController()
+  if(not cc.exists()):
+    print("engine: default (multipass)")
+    return MPController()
+
+  config = cc.getConfig()
+  print(f"engine: {config.engine}")
+
+  if(config.engine == "multipass"):
+    return MPController()
+  
+  if(config.engine == "docker"):
+    return DockerController()
+  
+  raise Exception("Engine not found!")
+
 ic:InstanceController = getInstanceController()
 
 command_list = CommandManager([
   Command(CmdInfo("help", "display help")),
   InitCommand(ic),
+
+  StartCommand(ic),
+  StopCommand(ic),
+
   InfoCommand(ic),
   RemoveCommand(ic),
   PkgCommand(ic),
-  Command(CmdInfo("config", "udpate or read config to or from VM instance")),
+  ConfigCommand(),
   ExecCommand(ic),
   RunCommand(ic),
   DoctorCommand()

@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 import os
-import subprocess
 import json
 
 from dataclasses import dataclass
@@ -18,22 +17,7 @@ class MPController(InstanceController):
   """AKA, MultiPass-Controller"""
   def __init__(self) -> None:
     pass
-
-  def cmd_run_bg(self,cmds):
-    """run command without showing output and return output"""
-    return str(subprocess.run(cmds.split(" "), stdout=subprocess.PIPE).stdout.decode("utf-8"))
-
-  def cmd_run(self,cmds):
-    """run command without hidding output (and no returning output)"""
-    return str((subprocess.run(cmds.split(" ")).stdout or b"").decode("utf-8"))
-
-  def cmd_run_disp(self,cmds):
-    """run command and display it as a format: 
-      CMD: [cmd_str]
-    """
-    print("CMD: ", cmds)
-    self.cmd_run(cmds)
-  
+ 
   def list_vm(self):
     """return all instances list object"""
     vms = []

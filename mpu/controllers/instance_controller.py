@@ -1,7 +1,24 @@
 from mpu.controllers.config_controller import ConfigData
+import subprocess
 
 class InstanceController:
   """A controller to operate virtualization interface"""
+
+  def cmd_run_bg(self,cmds):
+    """run command without showing output and return output"""
+    return str(subprocess.run(cmds.split(" "), stdout=subprocess.PIPE).stdout.decode("utf-8"))
+
+  def cmd_run(self,cmds):
+    """run command without hidding output (and no returning output)"""
+    return str((subprocess.run(cmds.split(" ")).stdout or b"").decode("utf-8"))
+
+  def cmd_run_disp(self,cmds):
+    """run command and display it as a format: 
+      CMD: [cmd_str]
+    """
+    print("CMD: ", cmds)
+    self.cmd_run(cmds)
+
   def __init__(self) -> None:
     pass
 
