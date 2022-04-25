@@ -54,6 +54,7 @@ usage: `vem [commands] [options]`
 - [x] `vem rm`: remove current folder instance totally (delete + purge)
 - [ ] `vem exec [command]`: execute command and recored it to config
 - [ ] `vem shell [command]`: enter instance shell to execute command (not recommended to do that)
+- [ ] `vem doctor`: A command tool to help you setup and diagnosis vem
 - [ ] `vem build`: build a docker image for current developement
 
 ## Configuration design
