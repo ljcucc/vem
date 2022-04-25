@@ -59,8 +59,10 @@ source ~/.zshrc
 - [x] `vem rm`: remove current folder instance totally (delete + purge)
 - [x] `vem exec [command]`: execute command and recored it to config
 - [ ] `vem shell [command]`: enter instance shell to execute command (not recommended to do that)
-- [ ] Support docker
-  * implement `DockerController` with `InstanceController`
+* Support other engine
+  - [ ] docker: implement `DockerController` with `InstanceController`
+  - [ ] QEMU (this is hard)
+  - [ ] local environment (for environments that already virtualised)
 - [ ] `vem doctor`: A command tool to help you setup and diagnosis vem
 - [ ] `vem build`: build a docker image for current developement
 
