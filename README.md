@@ -38,10 +38,10 @@ usage: `vem [commands] [options]`
   - [x] auto install packages when init from a exist `mpconfig.json`
   - [ ] auto mount Workspace folder to VM
 - [ ]  `vem pkg`: package and solution management tool for dependencies
-  - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to `mpconfig.json`
+  - [x] `vem pkg install`: AKA apt-get install package to instance and add dependency to `mpconfig.json`
     - [x] supprt `apt-get install`
     - [x] support other PM and optional sudo
-  - [ ] `vem pkg uninstall`: AKA apt-get uninstall package from instance and remove dependency to `mpconfig.json`
+  - [x] `vem pkg uninstall`: AKA apt-get uninstall package from instance and remove dependency to `mpconfig.json`
     - [x] supprt `apt-get uninstall`
     - [x] support other PM and optional sudo
   - [ ] `vem pkg list`: list all dependencies package
