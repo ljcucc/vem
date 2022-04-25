@@ -65,7 +65,6 @@ class ConfigController:
 
   def write(self, config):
     """deprecated: write all config object to file"""
-    print(config)
 
     with open(self.config_path, '+w') as jsonf:
       json.dump(config ,jsonf, indent=4)
