@@ -36,6 +36,9 @@ class ConfigData:
 
   packages:list =  field(default_factory=lambda:[])
   """installed packages list"""
+
+  engine:str = "multipass"
+  """engine type, currently support Multipass and Docker."""
     
   @staticmethod
   def fromDict(d:dict):
