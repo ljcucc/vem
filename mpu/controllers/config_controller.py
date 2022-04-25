@@ -84,6 +84,11 @@ class ConfigController:
     
   def getConfig(self) -> ConfigData:
     """get config data object from file"""
+
+    if not self.exists():
+      print("config file not found.")
+      exit(1)
+
     return self.convData(self.read())
   
   def convData(self, config):
