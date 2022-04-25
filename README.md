@@ -25,13 +25,18 @@ usage: `vem [commands] [options]`
 
 1. cd to your project workspace folder
 2. launch a VM by using command: `vem init`
+  * if `mpconfig.json` exists, then `vem` will auto setup VM and install all packages
+  * if not, `vem` will ask to setup config (just like `npm init`)
+3. if you want to stop current VM (maybe saving space on hard drive or abort VM), type `vem rm` to remove all stuff
+4. copy your project to someone else, and run (1) to start your environment again
 
 ## Roadmap (TODO)
 
-- [x] `vem init`: start up automation tool
+- [ ] `vem init`: start up automation tool
   - [x] generate `mpconfig.json`
   - [x] auto create instance by using `mpconfig.json`
   - [x] auto install packages when init from a exist `mpconfig.json`
+  - [ ] auto mount Workspace folder to VM
 - [ ]  `vem pkg`: package and solution management tool for dependencies
   - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to `mpconfig.json`
     - [x] supprt `apt-get install`
