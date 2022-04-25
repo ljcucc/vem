@@ -63,6 +63,9 @@ source ~/.zshrc
   - [ ] docker: implement `DockerController` with `InstanceController`
   - [ ] QEMU (this is hard)
   - [ ] local environment (for environments that already virtualised)
+- [ ] pause VM
+  - [ ] `vem start`: restart paused instance
+  - [ ] `vem stop`: pause or stop instance
 - [ ] `vem doctor`: A command tool to help you setup and diagnosis vem
 - [ ] `vem build`: build a docker image for current developement
 
