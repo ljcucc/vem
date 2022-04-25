@@ -1,6 +1,6 @@
 # VEM - A Multipass Utils (currently)
 
-> ⚠️ WARNING: unfinished project
+> ⚠️ WARNING: unfinished project - anytime, anywhen the source code may changes several times, currently unstable, tasks on roadmap currently implementing.
 
 this is a very simple tool collection to help you get around your development environments with npm-like, pipenv-style operation.
 
