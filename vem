@@ -8,10 +8,7 @@ from os import path
 from mpu.command import CmdInfo, Command, CommandManager
 
 from mpu.cmds import *
-
-from mpu.controllers.args_controller import ArgsController
-from mpu.controllers.config_controller import ConfigController
-from mpu.controllers.instance_controller import InstanceController
+from mpu.controllers import *
 
 from mpu.controllers.engine.mp_controller import InstanceInfo, MPController
 from mpu.controllers.engine.docker_controller import *
