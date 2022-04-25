@@ -1,8 +1,9 @@
 import os
 from os import path
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import dataclasses
+from typing import List
 
 def dataclass_from_dict(classname, d):
   try:
@@ -16,14 +17,29 @@ class ConfigData:
   """Config data dataclass"""
 
   version:int  = 1
+  """version of ConfigData"""
+
   name: str = ""
+  """name of the env (instance)"""
+
   disk: str = "10G"
-  recorded:bool = True # enable this will record every command you type from "exec"
+  """disk space size"""
+
+  recorded:bool = True 
+  """enable this will record every command you type from 'exec'"""
+
   dir:str = ""
+  """dir name"""
+
   pm_cli = "apt-get"
+  """package manager cli name (or path)"""
+
+  packages:list =  field(default_factory=lambda:[])
+  """installed packages list"""
     
   @staticmethod
-  def fromDict(d):
+  def fromDict(d:dict):
+    """convert dict to config data"""
     return dataclass_from_dict(ConfigData, d)
 
   def toDict(self) -> dict:
@@ -38,7 +54,10 @@ class ConfigController:
   """Controller for config file"""
   def __init__(self) -> None:
     self.current_folder = os.getcwd()
+    """the folder that program currently running at (user execution)"""
+
     self.config_path = path.join(self.current_folder, "mpconfig.json")
+    """string path to config file"""
 
   def exists(self) -> bool:
     """check config file is exists or not"""
@@ -46,6 +65,7 @@ class ConfigController:
 
   def write(self, config):
     """deprecated: write all config object to file"""
+    print(config)
 
     with open(self.config_path, '+w') as jsonf:
       json.dump(config ,jsonf, indent=4)
