@@ -4,6 +4,8 @@
 
 this is a very simple tool collection to help you get around your development environments with npm-like, pipenv-style operation.
 
+usage: `vem [commands] [options]`
+
 ## Installation
 
 ```bash
@@ -18,8 +20,6 @@ source ~/.zshrc
 ```
 
 ## Get Started
-
-usage: `vem [commands] [options]`
 
 > vem stands for **Virtualization Environment Manager**
 
@@ -47,7 +47,7 @@ usage: `vem [commands] [options]`
   - [ ] `vem pkg list`: list all dependencies package
   - [ ] implements for other PM by using `PMController`
     * naming rules: `[OS/distro][PM_Name]PM`
-    - [ ] Ubuntu `apt-get`: `AptGetPM` (default)
+    - [x] Ubuntu `apt-get`: `AptGetPM` (default)
     - [ ] Debain `apt-get`: `DebainPkgPM`
     - [ ] Alpine `pkg`: `AplinePkgPM`
     - [ ] Arch(linux) `pacman`: `ArchPkgPM`
