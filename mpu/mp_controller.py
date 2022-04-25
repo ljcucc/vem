@@ -51,8 +51,9 @@ class MPController:
     self.cmd_run(f"multipass delete {name}")
     self.cmd_run(f"multipass purge")
 
-  def exec_vm(self, name):
+  def exec(self, name, cmd):
     """run a command to a instance"""
+    self.cmd_run_disp(f"multipass exec {name} -- {cmd}")
 
   def exists(self, name):
     """check a instance is exists or not by using name of it"""
