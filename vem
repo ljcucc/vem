@@ -11,7 +11,7 @@ from mpu.cmds.init import InitCommand
 from mpu.cmds.pkg import PkgCommand
 from mpu.cmds.info import InfoCommand
 from mpu.cmds.rm import RemoveCommand
-from mpu.cmds.exec import ExecCommand
+from mpu.cmds.exec import ExecCommand, RunCommand
 from mpu.cmds.doctor.doctor import DoctorCommand
 
 from mpu.controllers.args_controller import ArgsController
@@ -24,6 +24,7 @@ command_list = CommandManager([
   PkgCommand(),
   Command(CmdInfo("config", "udpate or read config to or from VM instance")),
   ExecCommand(),
+  RunCommand(),
   DoctorCommand()
 ])
 
@@ -33,7 +34,7 @@ def main():
   ac = ArgsController()
 
   if(not ac.isValidCmd()):
-    print(disp_help())
+    print(command_list.disp_help())
     exit(0)
 
   if(not command_list.run(ac)):

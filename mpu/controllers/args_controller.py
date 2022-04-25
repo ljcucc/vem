@@ -34,6 +34,8 @@ class ArgsController:
   
   def title(self): return self.command_head()
   
+  def source(self): return " ".join(self.levels+self.args)
+
   def down_level(self):
     if(len(self.levels) == 0):
       return self
