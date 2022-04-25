@@ -1,4 +1,5 @@
-from mpu.controllers.config_controller import ConfigData
+from mpu.controllers.config_controller import ConfigController, ConfigData
+from mpu.controllers.instance_controller import InstanceController
 
 
 class PMController:
@@ -13,36 +14,51 @@ class PMController:
   def install(self,pkg_name) -> list:
     """get installation command string"""
     return [
-      f"sudo apt-get update"
+      f"sudo apt-get update",
       f"sudo apt-get -y install {pkg_name}"
     ]
   
   def uninstall(self, pkg_name) -> list:
     """get uninstallation command string"""
     return [
-      f"sudo apt-get -y uninstall {pkg_name}"
+      f"sudo apt-get -y uninstall {pkg_name}",
       "sudo apt-get autoremove"
     ]
 
 class AptGet(PMController):
   def __init__(self) -> None:
-    super().__init__("apt-get")
+    super().__init__()
 
 class PackagesController:
-  """A controller to install, uninstall package by using PMController"""
-  def __init__(self, pmc:PMController) -> None:
+  """Operate packages of a instance"""
+  def __init__(self, pmc:PMController, ic:InstanceController, cc:ConfigController) -> None:
     self.pmc = pmc
+    self.ic = ic
+    self.cc = cc
     """PMController"""
 
-  def resolve(self, config: ConfigData):
+  def resolve(self):
     """resolving (installing package from config.packages) packages and install"""
-    for package in config.packages:
+
+    print("Resolving packages from config file...")
+
+    for package in self.cc.getConfig().packages:
       self.install(package)
 
   def install(self, package_name:str):
     """Install package by a package name (str)"""
-    for cmd in self.pmc.install():
-      
+
+    name = self.cc.getConfig().name
+    """instance name"""
+
+    for cmd in self.pmc.install(package_name):
+      self.ic.exec(name, cmd)
 
   def uninstall(self, package_name:str):
     """Uninstall package by a package name (str)"""
+
+    name = self.cc.getConfig().name
+    """instance name"""
+
+    for cmd in self.pmc.uninstall(package_name):
+      self.ic.exec(name, cmd)

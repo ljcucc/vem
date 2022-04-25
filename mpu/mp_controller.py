@@ -5,6 +5,8 @@ import json
 
 from dataclasses import dataclass
 
+from mpu.controllers.instance_controller import InstanceController
+
 from .controllers.config_controller import ConfigData
 
 @dataclass
@@ -12,7 +14,7 @@ class InstanceInfo:
   name: str
   disk: str
 
-class MPController:
+class MPController(InstanceController):
   """AKA, MultiPass-Controller"""
   def __init__(self) -> None:
     pass
@@ -48,8 +50,8 @@ class MPController:
   
   def remove_vm(self, name):
     """remove vm instance"""
-    self.cmd_run(f"multipass delete {name}")
-    self.cmd_run(f"multipass purge")
+    self.cmd_run_disp(f"multipass delete {name}")
+    self.cmd_run_disp(f"multipass purge")
 
   def exec(self, name, cmd):
     """run a command to a instance"""

@@ -3,6 +3,7 @@ from os import path
 import json
 
 from mpu.controllers.args_controller import ArgsController
+from mpu.controllers.packages_controllers import AptGet, PMController, PackagesController
 
 from ..command import Command, CmdInfo
 from ..mp_controller import MPController
@@ -86,9 +87,16 @@ class InitCommand(Command):
     else:
       print("config file exists, read from config file...")
       self.config = cc.getConfig()
-      print(self.config)
+      # print(self.config)
     
   def launch(self):
     """launch a instance by using MPController"""
+
+    # Create VM instance
     cc = ConfigController()
     self.mpc.launch_vm(cc.convData(self.config))
+
+    # Init instance
+    self.pmc:PMController = AptGet()
+    self.pc = PackagesController(self.pmc, self.mpc, cc)
+    self.pc.resolve()
