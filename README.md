@@ -41,12 +41,17 @@ usage: `vem [commands] [options]`
   - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to `mpconfig.json`
     - [x] supprt `apt-get install`
     - [x] support other PM and optional sudo
-    - [ ] implements for other PM
   - [ ] `vem pkg uninstall`: AKA apt-get uninstall package from instance and remove dependency to `mpconfig.json`
     - [x] supprt `apt-get uninstall`
     - [x] support other PM and optional sudo
-    - [ ] implements for other PM
   - [ ] `vem pkg list`: list all dependencies package
+  - [ ] implements for other PM by using `PMController`
+    * naming rules: `[OS/distro][PM_Name]PM`
+    - [ ] Ubuntu `apt-get`: `AptGetPM` (default)
+    - [ ] Debain `apt-get`: `DebainPkgPM`
+    - [ ] Alpine `pkg`: `AplinePkgPM`
+    - [ ] Arch(linux) `pacman`: `ArchPkgPM`
+    - [ ] Cent OS `rpm`: `CentRpmPM`
 - [ ] `vem config`: update, get, set config to a VM instance, everytime config updated, VM will be recreate.
   - [ ] `vem config update`: update `mpconfig.json` settings
   - [ ] `vem config set`: set VM config
@@ -54,6 +59,8 @@ usage: `vem [commands] [options]`
 - [x] `vem rm`: remove current folder instance totally (delete + purge)
 - [ ] `vem exec [command]`: execute command and recored it to config
 - [ ] `vem shell [command]`: enter instance shell to execute command (not recommended to do that)
+- [ ] Support docker
+  * implement `DockerController` with `InstanceController`
 - [ ] `vem doctor`: A command tool to help you setup and diagnosis vem
 - [ ] `vem build`: build a docker image for current developement
 
