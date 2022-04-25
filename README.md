@@ -33,7 +33,11 @@ usage: `vem [commands] [options]`
   - [x] auto create instance by using `mpconfig.json`
 - [ ]  `vem pkg`: package and solution management tool for dependencies
   - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to mpconfig.json
+    - [ ] supprt `apt-get install`
+    - [ ] support different PM and optional sudo
   - [ ] `vem pkg uninstall`: AKA apt-get uninstall package from instance and remove dependency to mpconfig.json
+    - [ ] supprt `apt-get uninstall`
+    - [ ] support different PM and optional sudo
   - [ ] `vem pkg list`: list all dependencies package
 - [ ] `vem config`: update, get, set config to a VM instance, everytime config updated, VM will be recreate.
   - [ ] `vem config update`: update `mpconfig.json` settings
