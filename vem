@@ -17,7 +17,7 @@ from mpu.cmds.help import HelpCommand
 
 from mpu.controllers.args_controller import ArgsController
 from mpu.controllers.instance_controller import InstanceController
-from mpu.mp_controller import MPController
+from mpu.controllers.engine.mp_controller import MPController
 
 # TODO: read config file and return different InstanceController for different platform
 def getInstanceController():
