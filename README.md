@@ -28,14 +28,15 @@ usage: `vem [commands] [options]`
 
 ## Roadmap (TODO)
 
-- [x] `vem init`: start up automation tool
+- [ ] `vem init`: start up automation tool
   - [x] generate `mpconfig.json`
   - [x] auto create instance by using `mpconfig.json`
+  - [x] auto install packages when init from a exist `mpconfig.json`
 - [ ]  `vem pkg`: package and solution management tool for dependencies
-  - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to mpconfig.json
+  - [ ] `vem pkg install`: AKA apt-get install package to instance and add dependency to `mpconfig.json`
     - [x] supprt `apt-get install`
     - [ ] support different PM and optional sudo
-  - [ ] `vem pkg uninstall`: AKA apt-get uninstall package from instance and remove dependency to mpconfig.json
+  - [ ] `vem pkg uninstall`: AKA apt-get uninstall package from instance and remove dependency to `mpconfig.json`
     - [x] supprt `apt-get uninstall`
     - [ ] support different PM and optional sudo
   - [ ] `vem pkg list`: list all dependencies package
@@ -45,3 +46,4 @@ usage: `vem [commands] [options]`
   - [ ] `vem config get`: get VM config
 - [x] `vem rm`: remove current folder instance totally (delete + purge)
 - [ ] `vem exec [command]`: execute command and recored it to config
+- [ ] `vem shell [command]`: enter instance shell to execute command (not recommended to do that)
