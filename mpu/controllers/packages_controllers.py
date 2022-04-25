@@ -11,6 +11,13 @@ class PMController:
   def __init__(self) -> None:
     pass
   
+  def installs(self, packages:list):
+    """get install packages command by pass a list[str]"""
+    return [
+      "sudo apt-get update",
+      "sudo apt-get -y install " + (" ".join(packages))
+    ]
+
   def install(self,pkg_name) -> list:
     """get installation command string"""
     return [
@@ -41,15 +48,19 @@ class PackagesController:
     """resolving (installing package from config.packages) packages and install"""
 
     print("Resolving packages from config file...")
+    self.installs(self.cc.getConfig().packages)
 
-    for package in self.cc.getConfig().packages:
-      self.install(package)
+  def installs(self, packages:list):
+    """install packages by pass a list[str]"""
+    name = self.cc.getConfig().name
+
+    for cmd in self.pmc.installs(packages):
+      self.ic.exec(name, cmd)
 
   def install(self, package_name:str):
     """Install package by a package name (str)"""
 
     name = self.cc.getConfig().name
-    """instance name"""
 
     for cmd in self.pmc.install(package_name):
       self.ic.exec(name, cmd)
