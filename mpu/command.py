@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from mpu.controllers.args_controller import ArgsController
+from mpu.controllers.instance_controller import InstanceController
 
 class Command:
   """Empty command tmeplate class"""

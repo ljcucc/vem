@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 from mpu.controllers.instance_controller import InstanceController
 
-from .controllers.config_controller import ConfigData
+from ..config_controller import ConfigData
 
 @dataclass
 class InstanceInfo:

@@ -13,20 +13,30 @@ from mpu.cmds.info import InfoCommand
 from mpu.cmds.rm import RemoveCommand
 from mpu.cmds.exec import ExecCommand, RunCommand
 from mpu.cmds.doctor.doctor import DoctorCommand
+from mpu.cmds.help import HelpCommand
 
 from mpu.controllers.args_controller import ArgsController
+from mpu.controllers.instance_controller import InstanceController
+from mpu.mp_controller import MPController
+
+# TODO: read config file and return different InstanceController for different platform
+def getInstanceController():
+  return MPController()
+ic:InstanceController = getInstanceController()
 
 command_list = CommandManager([
   Command(CmdInfo("help", "display help")),
-  InitCommand(),
-  InfoCommand(),
-  RemoveCommand(),
-  PkgCommand(),
+  InitCommand(ic),
+  InfoCommand(ic),
+  RemoveCommand(ic),
+  PkgCommand(ic),
   Command(CmdInfo("config", "udpate or read config to or from VM instance")),
-  ExecCommand(),
-  RunCommand(),
+  ExecCommand(ic),
+  RunCommand(ic),
   DoctorCommand()
 ])
+
+command_list.cmds[0] = HelpCommand(command_list)
 
 def main():
   global command_list

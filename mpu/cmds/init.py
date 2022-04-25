@@ -3,10 +3,11 @@ from os import path
 import json
 
 from mpu.controllers.args_controller import ArgsController
+from mpu.controllers.instance_controller import InstanceController
 from mpu.controllers.packages_controllers import AptGet, PMController, PackagesController
 
 from ..command import Command, CmdInfo
-from ..mp_controller import MPController
+from ..controllers.engine.mp_controller import MPController
 from ..controllers.config_controller import ConfigController, ConfigData
 
 import random
@@ -15,10 +16,10 @@ rand_char = lambda y: ''.join(random.choice(string.ascii_letters) for x in range
 
 class InitCommand(Command):
   """Command 'init' class"""
-  def __init__(self):
+  def __init__(self, ic:InstanceController):
     super().__init__(CmdInfo("init", "create a VM instance for current folder"))
     self.config = {}
-    self.mpc = MPController()
+    self.mpc = ic
 
   def run(self, args:ArgsController):
     """while command is executed"""

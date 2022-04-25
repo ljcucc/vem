@@ -3,16 +3,17 @@ from os import path
 
 from mpu.controllers.args_controller import ArgsController
 from mpu.controllers.config_controller import ConfigController
+from mpu.controllers.instance_controller import InstanceController
 from ..command import Command, CmdInfo, CommandManager
-from mpu.mp_controller import MPController
+from mpu.controllers.engine.mp_controller import MPController
 
 class UninstallCommand(Command):
   """'pkg uninstall'"""
-  def __init__(self) -> None:
+  def __init__(self, ic:InstanceController) -> None:
     super().__init__(
       CmdInfo("uninstall", "Uninstall a package from instance")
     )
-    self.mpc = MPController()
+    self.mpc = ic
     self.cc = ConfigController()
 
   def run(self, args: ArgsController):
@@ -29,11 +30,11 @@ class UninstallCommand(Command):
 
 class InstallCommand(Command):
   """'pkg install'"""
-  def __init__(self) -> None:
+  def __init__(self, ic:InstanceController) -> None:
     super().__init__(
       CmdInfo("install", "Install a package to instance")
     )
-    self.mpc = MPController()
+    self.mpc = ic
     self.cc = ConfigController()
   
   def run(self, args: ArgsController):
@@ -59,14 +60,14 @@ class ListCommand(Command):
 class PkgCommand(Command):
   """Command 'pkg' class"""
 
-  def __init__(self):
+  def __init__(self, ic:InstanceController):
     super().__init__(
       CmdInfo("pkg", "manage package of VM instance")
     )
 
     self.cm = CommandManager([
-      UninstallCommand(),
-      InstallCommand()
+      UninstallCommand(ic),
+      InstallCommand(ic)
     ])
   
   def run(self, args: ArgsController):
