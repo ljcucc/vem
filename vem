@@ -11,6 +11,8 @@ from mpu.cmds.init import InitCommand
 from mpu.cmds.pkg import PkgCommand
 from mpu.cmds.info import InfoCommand
 from mpu.cmds.rm import RemoveCommand
+from mpu.cmds.exec import ExecCommand
+
 from mpu.controllers.args_controller import ArgsController
 
 def disp_help():
@@ -33,7 +35,8 @@ command_list = CommandManager([
   InfoCommand(),
   RemoveCommand(),
   PkgCommand(),
-  Command(CmdInfo("config", "udpate or read config to or from VM instance"))
+  Command(CmdInfo("config", "udpate or read config to or from VM instance")),
+  ExecCommand()
 ])
 
 def main():
