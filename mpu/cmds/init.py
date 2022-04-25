@@ -20,6 +20,7 @@ class InitCommand(Command):
     self.mpc = MPController()
 
   def run(self, args:ArgsController):
+    """while command is executed"""
     self.read_config()
     self.launch()
   
@@ -36,11 +37,16 @@ class InitCommand(Command):
     # print(args)
   
   def prompt_config(self):
+    """Prompt user to input config file."""
+
+    # Init config object
     current_folder = os.getcwd()
     config = ConfigData(
       name = os.path.basename(current_folder).lower().replace("_","-"), 
       dir = current_folder
     )
+
+    # Prompt instance name
     config.name = input(f"* environment name: ({config.name}) ") or config.name
     while True:
       rid = rand_char(6)
@@ -49,11 +55,14 @@ class InitCommand(Command):
         config.name = rand_char(6)+"-"+config.name
         break
 
+    # Prompt disk name
     config.disk = input(f"* disk size: ({config.disk}) ") or config.disk
 
+    # Display final config
     print()
     print(json.dumps(config.toDict(), indent=4))
 
+    # Confirm config before write to file
     confirm = input("\nIs this OK? (yes) ")
     if not (len(confirm) > 0 and (confirm[0].lower() == 'y' or confirm[0] == '\n')):
       print("canceled")
@@ -62,6 +71,7 @@ class InitCommand(Command):
     return config
   
   def read_config(self):
+    """read config object from file or user's input."""
     cc = ConfigController()
 
     print(f"\n[1/1] init VM instance in {cc.current_folder} ...")
@@ -76,5 +86,6 @@ class InitCommand(Command):
       print(self.config)
     
   def launch(self):
+    """launch a instance by using MPController"""
     cc = ConfigController()
     self.mpc.launch_vm(cc.convData(self.config))
