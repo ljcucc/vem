@@ -6,6 +6,10 @@ this is a very simple tool collection to help you get around your development en
 
 usage: `vem [commands] [options]`
 
+> `vem` designed to have the responsibilities and obligations to record as much as possible as any operation from user to VM instance, to restore the development environment in different places as much as possible.
+
+So `vem shell` or even `vem exec` is not recommended.
+
 ## Installation
 
 ```bash
