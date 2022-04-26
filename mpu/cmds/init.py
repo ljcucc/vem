@@ -2,16 +2,20 @@ import os
 from os import path
 import json
 
-from mpu.controllers.args_controller import ArgsController
-from mpu.controllers.instance_controller import InstanceController
-from mpu.controllers.packages_controllers import AptGet, PMController, PackagesController
+# from mpu.controllers.args_controller import ArgsController
+# from mpu.controllers.instance_controller import InstanceController
+# from mpu.controllers.packages_controllers import AptGet, PMController, PackagesController
 
-from ..command import Command, CmdInfo
-from ..controllers.engine.mp_controller import MPController
-from ..controllers.config_controller import ConfigController, ConfigData
+from mpu.command import *
+# from ..controllers.engine.mp_controller import MPController
+# from ..controllers.config_controller import ConfigController, ConfigData
+
+from mpu.controllers import *
 
 import random
 import string
+
+from mpu.controllers.engine.docker_controller import DockerController
 rand_char = lambda y: ''.join(random.choice(string.ascii_letters) for x in range(y))
 
 class InitCommand(Command):
@@ -27,16 +31,7 @@ class InitCommand(Command):
     self.launch()
   
   def read_options(self):
-    # import argparse
-
-    # my_parser = argparse.ArgumentParser()
-    # # my_parser.add_argument('init', action='store', type=int, nargs=3)
-    # my_parser.add_argument('-y', action='store')
-
-    # args = my_parser.parse_args()
-    a=0
-
-    # print(args)
+    """parse args option"""
   
   def prompt_config(self):
     """Prompt user to input config file."""
@@ -62,6 +57,21 @@ class InitCommand(Command):
 
     # Prompt package manager
     config.pm_cli = input(f"* package manager: ({config.pm_cli}) ") or config.pm_cli
+
+    # Choose virtualization engine
+    while True:
+      print(f"\nengine options: {engine_options}")
+      engine = input(f"* engine: ({config.engine}) ") or config.engine
+      if(not engine in engine_options):
+        print(f"engine '{engine}' option not found. ", end="\n")
+        continue
+      
+      break
+
+    if engine == "docker":
+      self.mpc = DockerController()
+
+    self.mpc.init_process()
 
     # Display final config
     print()

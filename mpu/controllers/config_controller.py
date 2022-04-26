@@ -86,7 +86,7 @@ class ConfigController:
     """get config data object from file"""
 
     if not self.exists():
-      print("config file not found.")
+      print()
       exit(1)
 
     return self.convData(self.read())

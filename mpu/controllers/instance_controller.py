@@ -22,6 +22,9 @@ class InstanceController:
   def __init__(self) -> None:
     pass
 
+  def init_process(self) -> None:
+    pass
+
   def list_vm(self):
     """return all instances list object"""
     pass
